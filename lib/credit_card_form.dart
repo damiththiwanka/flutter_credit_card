@@ -53,7 +53,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   MaskedTextController _cardNumberController;
   /* MaskedTextController(mask: '0000 0000 0000 0000');*/
   final TextEditingController _expiryDateController =
-      MaskedTextController(mask: '00/00');
+      MaskedTextController(mask: '00-00');
   final TextEditingController _cardHolderNameController =
       TextEditingController();
   MaskedTextController _cvvCodeController;
@@ -197,7 +197,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   color: widget.textColor,
                 ),
                 decoration: const InputDecoration(
-                    labelText: 'Expired Date', hintText: 'MM/YY'),
+                    labelText: 'Expired Date', hintText: 'MM-YY'),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
               ),
