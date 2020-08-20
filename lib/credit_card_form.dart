@@ -52,6 +52,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   CreditCardModel creditCardModel;
   MaskedTextController _cardNumberController;
   /* MaskedTextController(mask: '0000 0000 0000 0000');*/
+//RegExp(r'^((0[1-9])|(1[0-2]))\/(\d{2})$')
   final TextEditingController _expiryDateController =
       MaskedTextController(mask: '00/00');
   final TextEditingController _cardHolderNameController =
@@ -77,7 +78,6 @@ class _CreditCardFormState extends State<CreditCardForm> {
   @override
   void initState() {
     super.initState();
-
     createCreditCardModel();
 
     _cardNumberController = MaskedTextController(mask: '0000 0000 0000 0000');
@@ -154,6 +154,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formCard = GlobalKey();
     return Theme(
       data: ThemeData(
         primaryColor: themeColor.withOpacity(0.8),
@@ -187,6 +188,16 @@ class _CreditCardFormState extends State<CreditCardForm> {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               margin: const EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
+                autovalidate: true,
+                maxLength: 5,
+                validator: (value) {
+                  Pattern pattern = r'^((0[1-9])|(1[0-2]))\/(\d{2})$';
+                  RegExp regex = new RegExp(pattern);
+                  if (!regex.hasMatch(value)) {
+                    return 'Please Enter valid date';
+                  }
+                  return null;
+                },
                 focusNode: expDateFocusNode,
                 onFieldSubmitted: (term) {
                   fieldFocusChange(context, expDateFocusNode, cvvFocusNode);
