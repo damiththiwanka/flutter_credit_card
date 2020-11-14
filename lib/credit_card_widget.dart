@@ -208,7 +208,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                             child: Text(
                               widget.cvvCode.isEmpty
                                   ? isAmex ? 'XXXX' : 'XXX'
-                                  : widget.cvvCode,
+                                  :  isAmex ? (widget.cvvCode.length <4 ? widget.cvvCode : widget.cvvCode.substring(0,4)) :  (widget.cvvCode.length <3 ? widget.cvvCode : widget.cvvCode.substring(0,3)),
                               maxLines: 1,
                               style: widget.textStyle ?? defaultTextStyle,
                             ),
@@ -311,7 +311,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                   child: Text(
                     widget.cardNumber.isEmpty || widget.cardNumber == null
                         ? 'XXXX XXXX XXXX XXXX'
-                        : widget.cardNumber.length <23 ? widget.cardNumber : widget.cardNumber.substring(0,23),
+                        : widget.cardNumber.length <19 ? widget.cardNumber : widget.cardNumber.substring(0,),
                     style: widget.textStyle ?? defaultTextStyle,
                   ),
                 ),
