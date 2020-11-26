@@ -507,7 +507,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         break;
 
       default:
-        imgPath = 'cards/default_card.png';
+        imgPath = 'cards/default_card.jpg';
         break;
     }
 
